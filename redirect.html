@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>BNEI BARUCH | Redirect</title>
+    <style>
+        :root {
+            --main-blue: #1976d2;
+            --main-gray: #f4f6f8;
+            --header-dark: #232f3e;
+            --header-height: 64px;
+            --card-radius: 12px;
+            --card-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            --font-main: 'Segoe UI', 'Arial', sans-serif;
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background: var(--main-gray);
+            font-family: var(--font-main);
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            width: 100%;
+            height: var(--header-height);
+            background: var(--header-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 0 #e0e0e0;
+            position: relative;
+            z-index: 2;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .header-logo {
+            height: 38px;
+            width: 38px;
+            display: block;
+        }
+        .header-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .main {
+            flex: 1 1 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - var(--header-height));
+        }
+        .card {
+            background: #fff;
+            border-radius: var(--card-radius);
+            box-shadow: var(--card-shadow);
+            padding: 40px 32px 32px 32px;
+            width: 500px;
+            min-width: 500px;
+            max-width: 500px;
+            min-height: 260px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+        .card-content {
+            flex: 1 1 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .lang-float {
+            position: absolute;
+            top: 18px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .lang-float.left {
+            left: 24px;
+            right: auto;
+            flex-direction: row;
+        }
+        .lang-float.right {
+            right: 24px;
+            left: auto;
+            flex-direction: row-reverse;
+        }
+        .lang-globe {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            color: #888;
+        }
+        .lang-select-btn {
+            background: none;
+            border: none;
+            color: #444;
+            font-size: 1em;
+            font-family: inherit;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 5px;
+            transition: background 0.2s, color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .lang-select-btn:hover, .lang-select-btn.active {
+            background: #f4f6f8;
+            color: var(--main-blue);
+        }
+        .lang-list {
+            position: absolute;
+            top: 36px;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            z-index: 10;
+            display: none;
+            flex-direction: column;
+            min-width: 90px;
+        }
+        .lang-list.show {
+            display: flex;
+        }
+        .lang-option {
+            padding: 8px 16px;
+            font-size: 1em;
+            color: #232f3e;
+            background: #fff;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .lang-option:hover, .lang-option.active {
+            background: #e3e8ef;
+            color: #1976d2;
+        }
+        .card-icon {
+            background: var(--main-blue);
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .card-icon svg {
+            width: 32px;
+            height: 32px;
+            color: #fff;
+        }
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #222;
+        }
+        .countdown-display {
+            color: #1976d2;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .card-message {
+            color: #555;
+            font-size: 1rem;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+        .card-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn {
+            padding: 10px 22px;
+            border-radius: 6px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: var(--main-blue);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: #1251a3;
+        }
+        .btn-secondary {
+            background: #f4f6f8;
+            color: #1976d2;
+            border: 1px solid #e0e0e0;
+        }
+        .btn-secondary:hover {
+            background: #e3e8ef;
+        }
+        .footer {
+            margin-top: 0;
+            color: #aaa;
+            font-size: 0.95em;
+            width: 100%;
+            padding-top: 18px;
+            padding-bottom: 2px;
+        }
+        @media (max-width: 600px) {
+            .card {
+                padding: 24px 8px 16px 8px;
+                max-width: 98vw;
+                min-width: unset;
+                width: 98vw;
+            }
+            .header-title {
+                font-size: 1.1rem;
+            }
+            .lang-float.left {
+                left: 8px;
+            }
+            .lang-float.right {
+                right: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content" dir="ltr">
+            <svg class="header-logo" viewBox="0 0 32 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="22" r="16" fill="#232f3e"/>
+                <path d="M26.555 11.9852C26.4873 11.8152 22.8634 12.2444 22.4841 11.8068C22.1048 11.3693 22.6466 10.703 23.1658 10.2119C23.7227 9.67967 24.5669 8.40817 24.2982 8.30511C23.7496 8.98526 23.4457 9.35467 22.8091 9.96663C22.2142 10.5381 21.5008 11.3245 20.7659 11.7609C20.0802 12.1691 19.5769 12.5861 18.7319 12.4497C17.8869 12.3134 17.4644 12.0094 18.1449 11.1335C18.8254 10.2579 21.1643 8.16399 21.1643 8.16399C21.1238 7.80453 19.9079 8.69315 19.2662 9.18659C18.9511 9.43076 18.2008 9.92379 18.1952 9.6868C18.1901 9.44736 18.5908 8.74031 18.9368 8.26903C19.6609 7.28053 20.8923 5.62459 22.2546 4.14423C22.0842 3.9631 19.6748 6.42679 19.6748 6.24134C19.6748 6.05582 19.7548 5.35587 19.8714 4.71457C19.9792 4.126 20.5056 2.36066 20.5341 1.75979C20.3205 1.85055 19.6106 4.62659 19.2765 5.52313C18.9443 6.41217 17.0771 9.50884 16.8341 9.83582C16.5246 10.252 16.1584 10.0193 16.0422 9.42597C15.9709 9.06256 15.374 7.07009 15.701 6.4193C16.028 5.76808 16.7406 5.52075 17.1469 4.08716C17.5531 2.65356 17.1901 0.178755 16.9332 0C16.9388 0.842243 16.909 1.31905 16.8064 2.15534C16.7335 2.75463 16.7386 3.11135 16.5511 3.68011C16.3954 4.16246 16.2697 4.42722 15.9994 4.84815C15.701 5.16324 15.5658 5.37251 15.2305 5.2984C15.0335 5.25242 14.9142 5.16483 14.8064 4.9833C14.5187 4.56119 13.2737 1.43875 13.1025 1.30201C13.1025 1.52674 14.0863 4.96943 14.1731 5.88103C14.2472 6.61308 14.1235 7.16914 14.0529 7.90244L13.7846 9.15807C13.594 9.22662 13.1497 8.39427 12.7632 7.81166C12.4268 7.30276 12.2456 7.00586 11.9551 6.46364C12.0411 6.07326 12.1041 5.61429 12.0629 4.97934C12.0213 4.34439 12.9551 3.62184 12.9202 3.40821C12.8968 3.26553 11.9416 4.07328 11.9064 3.92465C11.8608 3.73321 11.8045 3.53702 11.7363 3.33726C11.3003 2.05983 10.1763 1.07015 9.75176 0.801419C9.99234 1.40348 10.7434 2.11532 11.0384 3.14583C11.3332 4.17673 11.4636 5.21992 11.1973 5.43038C10.8568 5.70228 9.99833 5.34279 9.28768 4.90641C8.26862 4.27622 7.95038 3.4205 7.6325 3.41693C7.31463 3.41337 8.3416 4.50848 8.48463 5.12956C8.62814 5.75103 6.38161 5.3527 6.18304 5.32496C5.83704 5.28294 5.76332 5.46328 6.03839 5.55523C6.45178 5.69277 7.20048 5.82673 7.61309 5.88103C8.97651 6.06098 10.1687 6.02766 11.2738 7.09268C12.1929 7.98052 12.5199 8.80136 12.7173 10.0994C12.8239 10.7962 11.8822 10.5497 10.1442 9.48739C9.51717 9.13068 8.73276 8.46204 8.62616 7.3063C8.49535 6.99399 8.33009 8.1779 8.53262 8.63251C8.66103 8.92102 7.01461 8.30235 6.38874 8.43627C6.02251 8.52549 8.22266 8.74821 9.23734 9.61544C9.77914 10.0787 11.5552 11.3831 12.2305 12.0102C12.4212 12.187 12.3198 12.6907 12.0308 12.7815C11.6721 12.894 11.0304 12.839 10.359 12.749C9.14692 12.5873 8.62736 11.9916 8.07286 11.4961C7.51794 11.0007 6.79464 9.73037 6.79464 9.73037C6.79464 10.1334 6.84971 10.7391 7.10101 11.1572C7.32254 11.5223 7.46724 11.7244 7.73874 12.0522C7.73874 12.0522 5.50807 11.5024 4.91394 11.5024C5.00034 11.728 6.38005 12.0308 7.03438 12.4073C7.81124 12.8505 10.4466 14.1941 10.3641 14.4188C10.1886 14.8829 7.97375 14.7331 7.20923 14.8211C6.42523 14.9147 5.19337 15.0498 5.17751 15.3055C5.16166 15.5611 6.36298 15.2812 7.05781 15.347C8.39151 15.4723 9.31578 15.4822 10.4632 15.7945C11.2714 16.0145 12.2428 16.6264 12.4228 17.0086C12.6011 17.3764 12.8009 17.7267 12.7632 18.8543L12.6903 21.6431C4.01264 21.7544 0 22.4702 0 22.4702C0 22.4702 4.01264 23.186 12.6903 23.2974L12.7632 26.0862C12.8009 27.2142 12.6011 27.5641 12.4228 27.9324C12.2428 28.3144 11.2714 28.9259 10.4632 29.1463C9.31578 29.4587 8.39151 29.4686 7.05781 29.5938C6.36298 29.6593 5.16166 29.3798 5.17751 29.6355C5.19337 29.8911 6.42523 30.0263 7.20923 30.1198C7.97375 30.2078 10.1886 30.058 10.3641 30.5221C10.4466 30.7468 7.81124 32.0904 7.03438 32.5336C6.38005 32.9101 5.00034 33.2125 4.91394 33.4384C5.50807 33.4384 7.73874 32.8887 7.73874 32.8887C7.46724 33.216 7.32254 33.4182 7.10101 33.7836C6.84971 34.2018 6.79464 34.8074 6.79464 35.2101C6.79464 35.2101 7.51794 33.9398 8.07286 33.4448C8.62736 32.9493 9.14692 32.3536 10.359 32.1915C11.0304 32.102 11.6721 32.0464 12.0308 32.1594C12.3198 32.2501 12.4212 32.7539 12.2305 32.9307C11.5552 33.5577 9.77914 34.8621 9.23734 35.3251C8.22266 36.1923 6.02251 36.4154 6.38874 36.5046C7.01461 36.6386 8.66103 36.0195 8.53262 36.308C8.33009 36.7626 8.49535 37.9469 8.62616 37.6346C8.73276 36.4788 9.51717 35.8102 10.1442 35.4535C11.8822 34.3913 12.8239 34.1447 12.7173 34.8415C12.5199 36.1395 12.1929 36.9604 11.2738 37.8482C10.1687 38.9132 8.97651 38.8799 7.61309 39.0598C7.20048 39.1137 6.45178 39.2481 6.03839 39.3857C5.76332 39.4772 5.83704 39.6579 6.18304 39.6159C6.38161 39.5878 8.62814 39.1894 8.48463 39.8109C8.3416 40.4324 7.31463 41.5275 7.6325 41.524C7.95038 41.5204 8.26862 40.6647 9.28768 40.0345C9.99833 39.5981 10.8568 39.2386 11.1973 39.5101C11.4636 39.721 11.3332 40.7641 11.0384 41.7946C10.7434 42.8256 9.99234 43.5374 9.75176 44.1395C10.1763 43.8703 11.3003 42.8806 11.7363 41.6036C11.8045 41.4038 11.8608 41.2077 11.9064 41.0162C11.9416 40.8676 12.8968 41.675 12.9202 41.5327C12.9551 41.3186 12.0213 40.5965 12.0629 39.9616C12.1041 39.3266 12.0411 38.8676 11.9551 38.4768C12.2456 37.9346 12.4268 37.6377 12.7632 37.1288C13.1497 36.5462 13.594 35.7142 13.7846 35.7824L14.0529 37.0385C14.1235 37.7717 14.2472 38.3278 14.1731 39.0598C14.0863 39.971 13.1025 43.4142 13.1025 43.6388C13.2737 43.5021 14.5187 40.3797 14.8064 39.9572C14.9142 39.776 15.0335 39.6881 15.2305 39.6425C15.5658 39.5684 15.701 39.7776 15.9994 40.0924C16.2697 40.5137 16.3954 40.7784 16.5511 41.2607C16.7386 41.8291 16.7335 42.1863 16.8064 42.7855C16.909 43.6218 16.9388 44.0986 16.9332 44.9405C17.1901 44.7621 17.5531 42.2873 17.1469 40.8537C16.7406 39.4201 16.028 39.1724 15.701 38.5216C15.374 37.8708 15.9709 35.8784 16.0422 35.5145C16.1584 34.9216 16.5246 34.6889 16.8341 35.1051C17.0771 35.4321 18.9443 38.5283 19.2765 39.4177C19.6106 40.3143 20.3205 43.0903 20.5341 43.1811C20.5056 42.5802 19.9792 40.8145 19.8714 40.2263C19.7548 39.585 19.6748 38.885 19.6748 38.6996C19.6748 38.5141 22.0842 40.9774 22.2546 40.7962C20.8923 39.3159 19.6609 37.66 18.9368 36.6718C18.5908 36.2006 18.1901 35.2985 18.1952 35.0587C18.2008 34.8217 18.9511 35.5101 19.2662 35.7539C19.9079 36.2473 21.1238 37.1364 21.1643 36.7769C21.1643 36.7769 18.8254 34.683 18.1449 33.807C17.4644 32.9315 17.8869 32.6275 18.7319 32.4911C19.5769 32.3548 20.0802 32.7717 20.7659 33.18C21.5008 33.6164 22.2142 34.4023 22.8091 34.9739C23.4457 35.5858 23.7496 35.9552 24.2982 36.6354C24.5669 36.5323 23.7227 35.2612 23.1658 34.7285C22.6466 34.2379 22.1048 33.5716 22.4841 33.134C22.8634 32.6964 26.4873 33.1253 26.555 32.9556C26.6375 32.7353 23.5301 32.0659 21.991 32.0536C20.4524 32.0413 18.4909 30.6346 18.8052 30.1103C19.1195 29.5859 20.6308 29.922 23.2348 30.9854C23.6367 31.023 22.4825 30.2367 22.1488 29.9743C23.1972 29.937 24.8911 29.1531 24.8452 28.9259C23.1972 29.4499 22.2733 29.4876 21.0394 29.1131C19.8056 28.7385 17.6577 28.0171 17.6577 27.7773C17.6577 27.1055 17.6332 26.2229 17.7172 25.0101L17.806 23.2903C26.115 23.1571 29.9601 22.4702 29.9601 22.4702C29.9601 22.4702 26.115 21.7834 17.806 21.6506L17.7172 19.9308C17.6332 18.718 17.6577 17.8353 17.6577 17.1631C17.6577 16.9234 19.8056 16.2024 21.0394 15.8278C22.2733 15.4533 23.1972 15.4905 24.8452 16.0149C24.8911 15.7878 23.1972 15.0038 22.1488 14.9661C22.4825 14.7042 23.6367 13.9178 23.2348 13.9551C20.6308 15.0189 19.1195 15.3549 18.8052 14.8306C18.4909 14.3062 20.4524 12.8996 21.991 12.8873C23.5301 12.875 26.6375 12.2056 26.555 11.9852Z" fill="white"/>
+            </svg>
+            <span class="header-title">BNEI BARUCH</span>
+        </div>
+    </div>
+    <div class="main">
+        <div class="card">
+            <div class="lang-float right" id="langFloat">
+                <svg class="lang-globe" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#888" stroke-width="1.5"/><path d="M10 1C12.5 4.5 12.5 15.5 10 19C7.5 15.5 7.5 4.5 10 1Z" stroke="#888" stroke-width="1.2"/><path d="M1 10H19" stroke="#888" stroke-width="1.2"/></svg>
+                <button class="lang-select-btn" id="langSelectBtn" onclick="toggleLangList(event)">
+                    <span id="langSelected">EN</span>
+                </button>
+                <div class="lang-list" id="langList">
+                    <button class="lang-option" data-lang="en" onclick="selectLang('en', event)">English</button>
+                    <button class="lang-option" data-lang="ru" onclick="selectLang('ru', event)">Russian</button>
+                    <button class="lang-option" data-lang="he" onclick="selectLang('he', event)">עברית</button>
+                    <button class="lang-option" data-lang="es" onclick="selectLang('es', event)">Español</button>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="card-icon">
+                    <!-- מנעול SVG -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="5" y="10" width="14" height="9" rx="2" fill="currentColor"/>
+                        <path d="M8 10V7a4 4 0 1 1 8 0v3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="card-title" data-en="Website Closed" data-he="האתר נסגר" data-ru="Сайт закрыт" data-es="Sitio cerrado">Website Closed</div>
+                <div class="countdown-display" id="countdownDisplay" data-en="Redirecting in 6 seconds..." data-he="מעביר בעוד 6 שניות..." data-ru="Перенаправление через 6 секунд..." data-es="Redirigiendo en 6 segundos...">Redirecting in 6 seconds...</div>
+                <div class="card-message" data-en="This website has been closed. Please visit our main platform to continue watching broadcasts." data-he="האתר הזה נסגר. אנא בקר בפלטפורמה הראשית שלנו כדי להמשיך לצפות בשידורים." data-ru="Этот сайт был закрыт. Пожалуйста, посетите нашу основную платформу для продолжения просмотра трансляций." data-es="Este sitio web ha sido cerrado. Por favor, visite nuestra plataforma principal para continuar viendo transmisiones.">This website has been closed. Please visit our main platform to continue watching broadcasts.</div>
+                <div class="card-actions">
+                    <a href="https://kli.one" class="btn btn-primary" data-en="Go to Kli.one" data-he="עבור ל-Kli.one" data-ru="Перейти на Kli.one" data-es="Ir a Kli.one">Go to Kli.one</a>
+                    <a href="mailto:support@kli.one" class="btn btn-secondary" data-en="Contact Support" data-he="צור קשר עם התמיכה" data-ru="Связаться с поддержкой" data-es="Contactar soporte">Contact Support</a>
+                </div>
+            </div>
+            <div class="footer" data-en="© 2024 Bnei Baruch - All rights reserved" data-he="© 2024 בני ברוך - כל הזכויות שמורות" data-ru="© 2024 Bnei Baruch - Все права защищены" data-es="© 2024 Bnei Baruch - Todos los derechos reservados">© 2024 Bnei Baruch - All rights reserved</div>
+        </div>
+    </div>
+    <script>
+        // Standalone language logic with dropdown and float direction
+        const languages = ['en', 'ru', 'he', 'es'];
+        const langNames = {en: 'EN', ru: 'RU', he: 'עב', es: 'ES'};
+        let currentLanguage = 'en';
+        function detectLanguage() {
+            const browserLang = navigator.language || navigator.userLanguage;
+            const langCode = browserLang.split('-')[0];
+            if (languages.includes(langCode)) return langCode;
+            const fallbacks = { 'iw': 'he', 'ar': 'he', 'uk': 'ru' };
+            return fallbacks[langCode] || 'en';
+        }
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            document.body.dir = lang === 'he' ? 'rtl' : 'ltr';
+            document.getElementById('langSelected').textContent = langNames[lang];
+            document.querySelectorAll('.lang-option').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.lang-option[data-lang="' + lang + '"]').classList.add('active');
+            document.querySelectorAll('[data-' + lang + ']').forEach(element => {
+                const text = element.getAttribute('data-' + lang);
+                if (text) element.textContent = text;
+            });
+            localStorage.setItem('redirect_language', lang);
+            // עדכון מיקום כפתור השפה
+            const langFloat = document.getElementById('langFloat');
+            if (lang === 'he') {
+                langFloat.classList.remove('left');
+                langFloat.classList.add('right');
+            } else {
+                langFloat.classList.remove('right');
+                langFloat.classList.add('left');
+            }
+        }
+        function selectLang(lang, event) {
+            setLanguage(lang);
+            document.getElementById('langList').classList.remove('show');
+            event.stopPropagation();
+        }
+        function toggleLangList(event) {
+            const list = document.getElementById('langList');
+            list.classList.toggle('show');
+            event.stopPropagation();
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('redirect_language');
+            const detectedLang = savedLang || detectLanguage();
+            setLanguage(detectedLang);
+            
+            // Start 6-second countdown for automatic redirect
+            let countdown = 6;
+            const countdownDisplay = document.getElementById('countdownDisplay');
+            const originalText = countdownDisplay.textContent;
+            
+            const countdownInterval = setInterval(function() {
+                countdown--;
+                if (countdown > 0) {
+                    // Update countdown display text
+                    const countdownText = originalText.replace(/\d+/, countdown);
+                    countdownDisplay.textContent = countdownText;
+                } else {
+                    // Redirect to kli.one
+                    clearInterval(countdownInterval);
+                    window.location.href = 'https://kli.one';
+                }
+            }, 1000);
+        });
+        document.addEventListener('click', function(e) {
+            const list = document.getElementById('langList');
+            if (list && list.classList.contains('show')) {
+                list.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html> 
