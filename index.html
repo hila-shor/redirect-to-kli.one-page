@@ -282,11 +282,11 @@
                     </svg>
                 </div>
                 <div class="card-title" data-en="Website Closed" data-he="האתר נסגר" data-ru="Сайт закрыт" data-es="Sitio cerrado">Website Closed</div>
-                <div class="countdown-display" id="countdownDisplay" data-en="Redirecting in 6 seconds..." data-he="מעביר בעוד 6 שניות..." data-ru="Перенаправление через 6 секунд..." data-es="Redirigiendo en 6 segundos...">Redirecting in 6 seconds...</div>
+                <div class="countdown-display" id="countdownDisplay" data-en="Redirecting in 10 seconds..." data-he="מעביר בעוד 10 שניות..." data-ru="Перенаправление через 10 секунд..." data-es="Redirigiendo en 10 segundos...">Redirecting in 10 seconds...</div>
                 <div class="card-message" data-en="This website has been closed. Please visit our main platform to continue watching broadcasts." data-he="האתר הזה נסגר. אנא בקר בפלטפורמה הראשית שלנו כדי להמשיך לצפות בשידורים." data-ru="Этот сайт был закрыт. Пожалуйста, посетите нашу основную платформу для продолжения просмотра трансляций." data-es="Este sitio web ha sido cerrado. Por favor, visite nuestra plataforma principal para continuar viendo transmisiones.">This website has been closed. Please visit our main platform to continue watching broadcasts.</div>
                 <div class="card-actions">
                     <a href="https://kli.one" class="btn btn-primary" data-en="Go to Kli.one" data-he="עבור ל-Kli.one" data-ru="Перейти на Kli.one" data-es="Ir a Kli.one">Go to Kli.one</a>
-                    <a href="mailto:support@kli.one" class="btn btn-secondary" data-en="Contact Support" data-he="צור קשר עם התמיכה" data-ru="Связаться с поддержкой" data-es="Contactar soporte">Contact Support</a>
+                    <button class="btn btn-secondary" id="contactUsBtn" data-en="Contact Us" data-he="צור קשר" data-ru="Связаться с нами" data-es="Contáctanos">Contact Us</button>
                 </div>
             </div>
             <div class="footer" data-en="© 2024 Bnei Baruch - All rights reserved" data-he="© 2024 בני ברוך - כל הזכויות שמורות" data-ru="© 2024 Bnei Baruch - Все права защищены" data-es="© 2024 Bnei Baruch - Todos los derechos reservados">© 2024 Bnei Baruch - All rights reserved</div>
@@ -340,8 +340,24 @@
             const detectedLang = savedLang || detectLanguage();
             setLanguage(detectedLang);
             
-            // Start 6-second countdown for automatic redirect
-            let countdown = 6;
+            // Add click handler for Contact Us button to ensure it works
+            const contactBtn = document.getElementById('contactUsBtn');
+            if (contactBtn) {
+                contactBtn.addEventListener('click', function() {
+                    console.log('Contact Us button clicked');
+                    
+                    const email = 'help@kli.one';
+                    const subject = 'SVT to HV Website Redirect - Contact';
+                    
+                    // Open Gmail compose directly (most reliable)
+                    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent(subject)}`;
+                    window.open(gmailUrl, '_blank');
+                    console.log('Opening Gmail compose');
+                });
+            }
+            
+            // Start 10-second countdown for automatic redirect
+            let countdown = 10;
             const countdownDisplay = document.getElementById('countdownDisplay');
             const originalText = countdownDisplay.textContent;
             
