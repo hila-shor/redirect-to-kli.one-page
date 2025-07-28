@@ -42,6 +42,7 @@
             align-items: center;
             justify-content: center;
             gap: 0px;
+            
         }
         .logo  {
             width: 80px;
@@ -291,7 +292,7 @@
         }
         function setLanguage(lang) {
             currentLanguage = lang;
-            document.body.dir = lang === 'he' ? 'rtl' : 'ltr';
+            document.querySelector('.card').dir = lang === 'he' ? 'rtl' : 'ltr';
             document.getElementById('langSelected').textContent = langNames[lang];
             document.querySelectorAll('.lang-option').forEach(btn => btn.classList.remove('active'));
             document.querySelector('.lang-option[data-lang="' + lang + '"]').classList.add('active');
