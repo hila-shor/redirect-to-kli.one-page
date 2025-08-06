@@ -178,14 +178,25 @@
         .card-message {
             color: #555;
             font-size: 1rem;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
             line-height: 1.5;
+        }
+        
+        .redirect-message {
+            color: var(--main-blue);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            line-height: 1.4;
+            font-weight: 500;
         }
         .card-actions {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
             justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            
         }
         .btn {
             padding: 10px 22px;
@@ -264,19 +275,31 @@
             <div class="card-content">
                 <div class="card-icon">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="5" y="10" width="14" height="9" rx="2" fill="currentColor"/>
-                        <path d="M8 10V7a4 4 0 1 1 8 0v3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="12" cy="12" r="10" fill="#1976d2"/>
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 22V12h6v10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
-                <div class="card-title" data-en="Website Closed" data-he="האתר נסגר" data-ru="Сайт закрыт" data-es="Sitio cerrado">Website Closed</div>
+                <div class="card-title" data-en="We have Moved!" data-he="עברנו דירה!" data-ru="Мы переехали!" data-es="¡Nos mudamos!">We've Moved!</div>
 
-                <div class="card-message" data-en="To continue watching the live broadcasts, please go to the Virtual Home by clicking the button below." data-he="להמשך צפייה בשידורים החיים – ניתן לעבור לבית הווירטואלי בלחיצה על הכפתור." data-ru="Чтобы продолжить просмотр прямых трансляций, перейдите в Виртуальный Дом, нажав на кнопку ниже." data-es="Para seguir viendo las transmisiones en vivo, entra a la Casa Virtual haciendo clic en el botón.">To continue watching the live broadcasts, please go to the Virtual Home by clicking the button below.</div>
+                <div class="redirect-message" data-en="You will be automatically redirected in 30 seconds." data-he="תועבר אוטומטית תוך 30 שניות." data-ru="Вы будете автоматически перенаправлены через 30 секунд." data-es="Serás redirigido automáticamente en 30 segundos.">You will be automatically redirected in 30 seconds.</div>
+
+                <div class="card-message" data-en="The website is closed, but learning continues!<br>We have moved to the new Virtual Home.<br>Everything you love is waiting for you there." data-he="האתר נסגר, אבל הלימוד ממשיך!<br/>עברנו לבית הווירטואלי החדש.<br/>מחכה לכם שם כל מה שאתם אוהבים." data-ru="Сайт закрыт, но обучение продолжается!<br>Мы переехали в новый Виртуальный Дом.<br>Все, что вы любите, ждет вас там." data-es="¡El sitio web está cerrado, pero el aprendizaje continúa!<br>Nos hemos mudado a la nueva Casa Virtual.<br>Todo lo que amas te espera allí.">The website is closed, but learning continues!<br>We have moved to the new Virtual Home.<br>Everything you love is waiting for you there.</div>
+                
+               
                 <div class="card-actions">
-                    <a href="https://kli.one/dash/broadcast" class="btn btn-primary" data-en="Go to Virtual Home" data-he="לבית הוירטואלי" data-ru="Перейти в виртуальный дом" data-es="Ir a Casa Virtual">Go to Virtual Home</a>
-                    <button class="btn btn-secondary" id="contactUsBtn" data-en="Contact Us" data-he="צור קשר" data-ru="Связаться с нами" data-es="Contáctanos">Contact Us</button>
+                    <!-- כפתור ראשי -->
+                    <a href="https://kli.one/dash/broadcast" class="btn btn-primary" style="width: auto; min-width: 240px; max-width: 350px; padding: 10px 24px;" data-en="Click here to continue together >>" data-he="לחצו כאן וממשיכים יחד >>" data-ru="Продолжить вместе >>" data-es="Continuar juntos >>">
+                        לחצו כאן וממשיכים יחד >>
+                    </a>
+
+                    <!-- שורת תמיכה -->
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px;">
+                        <span style="font-size: 0.9em; color: #555;" data-en="Encountered a problem?" data-he="נתקלתם בבעיה?" data-ru="Возникла проблема?" data-es="¿Tuviste un problema?">נתקלתם בבעיה?</span>
+                        <a href="#" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.85em;" data-en="Technical Support" data-he="תמיכה טכנית" data-ru="Техническая поддержка" data-es="Soporte técnico" onclick="openEmailSupport(); return false;">תמיכה טכנית</a>
+                    </div>
                 </div>
             </div>
-            <div class="footer" data-en="© 2024 Bnei Baruch - All rights reserved" data-he="© 2024 בני ברוך - כל הזכויות שמורות" data-ru="© 2024 Bnei Baruch - Все права защищены" data-es="© 2024 Bnei Baruch - Todos los derechos reservados">© 2024 Bnei Baruch - All rights reserved</div>
         </div>
     </div>
     <script>
@@ -299,10 +322,10 @@
             document.querySelector('.lang-option[data-lang="' + lang + '"]').classList.add('active');
             document.querySelectorAll('[data-' + lang + ']').forEach(element => {
                 const text = element.getAttribute('data-' + lang);
-                if (text) element.textContent = text;
+                if (text) element.innerHTML = text;
             });
             localStorage.setItem('redirect_language', lang);
-            // עדכון מיקום כפתור השפה
+            
             const langFloat = document.getElementById('langFloat');
             if (lang === 'he') {
                 langFloat.classList.remove('left');
@@ -311,6 +334,10 @@
                 langFloat.classList.remove('right');
                 langFloat.classList.add('left');
             }
+            
+            /* // Update original text for countdown
+            const countdownDisplay = document.querySelector('.redirect-message');
+            window.originalText = countdownDisplay.textContent; */
         }
         function selectLang(lang, event) {
             setLanguage(lang);
@@ -322,12 +349,21 @@
             list.classList.toggle('show');
             event.stopPropagation();
         }
+        
+        function openEmailSupport() {
+            const email = 'help@kli.one';
+            const subject = 'Technical Live stream access problem after site closure';
+            
+            // Always use Gmail compose as primary method
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent(subject)}`;
+            window.open(gmailUrl, '_blank');
+        }
         document.addEventListener('DOMContentLoaded', function() {
             const savedLang = localStorage.getItem('redirect_language');
             const detectedLang = savedLang || detectLanguage();
             setLanguage(detectedLang);
             
-            // Add click handler for Contact Us button to ensure it works
+            /* // Add click handler for Contact Us button to ensure it works
             const contactBtn = document.getElementById('contactUsBtn');
             if (contactBtn) {
                 contactBtn.addEventListener('click', function() {
@@ -341,8 +377,25 @@
                     window.open(gmailUrl, '_blank');
                     console.log('Opening Gmail compose');
                 });
-            }
+            } */
             
+            /* // Start 30-second countdown for automatic redirect
+            let countdown = 30;
+            const countdownDisplay = document.querySelector('.redirect-message');
+            window.originalText = countdownDisplay.textContent;
+            
+            const countdownInterval = setInterval(function() {
+                countdown--;
+                if (countdown > 0) {
+                    // Update countdown display text
+                    const countdownText = window.originalText.replace(/\d+/, countdown);
+                    countdownDisplay.innerHTML = countdownText;
+                } else {
+                    // Redirect to kli.one
+                    clearInterval(countdownInterval);
+                    window.location.href = 'https://kli.one';
+                }
+            }, 1000); */
 
         });
         document.addEventListener('click', function(e) {
